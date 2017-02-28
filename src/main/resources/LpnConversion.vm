@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tXML>
+  <Header>
+    <Source>Host</Source>
+    <Action_Type>Create</Action_Type>
+    <User_ID>WMADMIN</User_ID>
+    <Message_Type>Lpn</Message_Type>
+    <Company_ID>1</Company_ID>
+  </Header>
+  <Message>
+    <Lpn>
+      <FacilityAliasID>$!header["FacilityAliasID"]</FacilityAliasID>
+      <TCCompanyID>$!header["TCCompanyID"]</TCCompanyID>
+      <TCLpnID>$!header["TCLpnID"]</TCLpnID>
+      <Area>$!header["Area"]</Area>
+      <Zone>$!header["Zone"]</Zone>
+      <Aisle>$!header["Aisle"]</Aisle>
+      <Bay>$!header["Bay"]</Bay>
+      <Level>$!header["Level"]</Level>
+      <Position>$!header["Position"]</Position>
+      <InboundOutboundIndicator>I</InboundOutboundIndicator>
+      <LpnFacilityStatus>$!header["LpnFacilityStatus"]</LpnFacilityStatus>
+      <BusinessPartner>$!header["BusinessPartner"]</BusinessPartner>
+      <ConsumePriorityDate></ConsumePriorityDate>
+      <ConsumePriority></ConsumePriority>
+      <ConsumeSeq></ConsumeSeq>
+      <ManufacturedDTTM></ManufacturedDTTM>
+      <SingleSKULpn>Y</SingleSKULpn>
+      <EstimatedWeight>$!header["EstimatedWeight"]</EstimatedWeight>
+      <Weight>$!header["Weight"]</Weight>
+      <Volume>$!header["Volume"]</Volume>
+#foreach ( $detail in $header["details"] )
+      <LpnDetail>
+        <TCCompanyID>$!detail["TCCompanyID"]</TCCompanyID>
+        <Item>$!detail["Item"]</Item>
+        <InventoryType>$!detail["InventoryType"]</InventoryType>
+        <InitialQuantity>$!detail["InitialQuantity"]</InitialQuantity>
+        <ActualQuantity>$!detail["ActualQuantity"]</ActualQuantity>
+        <ShippedQuantity>$!detail["ShippedQuantity"]</ShippedQuantity>
+        <StandardPackQuantity>$!detail["StandardPackQuantity"]</StandardPackQuantity>
+        <StandardSubPackQuantity>$!detail["StandardSubPackQuantity"]</StandardSubPackQuantity>
+      </LpnDetail>
+#end      
+    </Lpn>
+  </Message>
+</tXML>

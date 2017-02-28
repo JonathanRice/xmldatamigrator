@@ -1,0 +1,39 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'xmldatamigrator'
+	version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven {
+		url "https://maven.atlassian.com/3rdparty/"
+	}
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile group: 'org.apache.velocity', name: 'velocity', version: '1.6.2'
+	// https://mvnrepository.com/artifact/com.oracle/ojdbc6
+	compile group: 'com.oracle', name: 'ojdbc6', version: '12.1.0.1-atlassian-hosted'
+	runtime('mysql:mysql-connector-java')
+	runtime('org.postgresql:postgresql')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
